@@ -32,8 +32,19 @@ export default function App() {
 
   const newTodo = await response.json()
   setData(preData => [...preData , newTodo]);
-  
 }
+const handleEdit = async () => {
+ const response = await fetch('https://645906864eb3f674df8478c5.mockapi.io/api/v1/todolist/2', {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name : "công việc 101"
+    })
+})
+}
+
 
   const [data , setData] = useState([]);
   useEffect(()=>{
@@ -51,7 +62,7 @@ export default function App() {
        <View style={styles.layout}>
   
           <Button title = 'Thêm' onPress = {handle}/>
-          <Button title = 'Sửa' ></Button>
+          <Button title = 'Sửa' onPress = {handleEdit} ></Button>
           <Button  title = 'Xóa'></Button>
 
        </View>
