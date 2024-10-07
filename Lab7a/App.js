@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import {useState , useEffect} from "react"
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, StyleSheet, Text,View } from 'react-native';
 
 
 
@@ -44,6 +44,12 @@ const handleEdit = async () => {
     })
 })
 }
+const handleDelete = async ()=>{
+
+  const response = await fetch('https://645906864eb3f674df8478c5.mockapi.io/api/v1/todolist/3',{
+    method : 'DELETE'
+  })
+}
 
 
   const [data , setData] = useState([]);
@@ -53,7 +59,7 @@ const handleEdit = async () => {
     .then(data => {
       setData(data)
     })
-  },[])
+  },data)
   return (
     <View style={styles.container}>
        <View style = {styles.title}>
@@ -63,7 +69,7 @@ const handleEdit = async () => {
   
           <Button title = 'Thêm' onPress = {handle}/>
           <Button title = 'Sửa' onPress = {handleEdit} ></Button>
-          <Button  title = 'Xóa'></Button>
+          <Button  title = 'Xóa' onPress = {handleDelete}></Button>
 
        </View>
 
